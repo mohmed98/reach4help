@@ -1,0 +1,23 @@
+[
+    {
+      "title": "The Shawshank Redemption",
+      "watch_list_of": [1, 2, 3],
+      "objectID": "myID1"
+    },
+    {
+      "title": "The Godfather",
+      "watch_list_of": [3],
+      "objectID": "myID2"
+    },
+    {
+      "title": "The Dark Knight",
+      "watch_list_of": [1, 2],
+      "objectID": "myID3"
+    },
+    {
+      "title": "12 Angry Men",
+      "watch_list_of": [2, 3],
+      "objectID": "myID4"
+    }
+  ]
+  
