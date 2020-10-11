@@ -13,6 +13,10 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-29-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+## Hacktoberfest Instructions
+
+**IF YOU ARE CREATING A PULL REQUEST FOR HACKTOBER FEST, PLEASE REFER TO [HACKTOBERFEST_README.MD](./hacktoberfest.md)**
+
 ## Who We Are
 
 [Reach4Help](https://reach4help.org/) is a global open-source and volunteer-run initiative connecting people in need with volunteers who can help during the COVID-19 pandemic and beyond. Through the development of open-source and accessible tools for volunteers (like [our app](https://app.reach4help.org/)), people in need, and volunteer organizations alike, we’re building a large-scale network of help to keep us stronger and more connected during this pandemic and beyond.
