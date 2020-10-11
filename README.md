@@ -14,6 +14,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## How _You_ Can Contribute
+
 We're currently looking for developers who are in React, TypeScript, JavaScript, HTML, CSS, Algolia, and/or Firebase. development.  We strive to implement best practices for implementing Clean Code techniques, including test driven development and object oriented programming.  If you want to learn about these techniques or would like to work on a team that implements these practices, join us!
 
 This is a great team to work if you want to work with other developers or if you want to work solo.  
@@ -21,24 +22,14 @@ We have daily pair and mob (collaborative) programming collaborative coding.  In
 
 ## Hacktoberfest Instructions
 
-Joseph or Ethan are available to work with you on video conference to fix or implement the hacktoberfest issue or you can do it on your own.
+Joseph or Ethan are available to work with you on video conference to fix or implement the hacktoberfest issue or you can fix the issue on your own.
 The best way to get ahold of them is through the Reach4Help Slack workspace or email ethanstrominger2@gmail.com.
 
 ## Who We Are
 
 [Reach4Help](https://reach4help.org/) is a global open-source and volunteer-run initiative connecting people in need with volunteers who can help during the COVID-19 pandemic and beyond. Through the development of open-source and accessible tools for volunteers (like [our app](https://app.reach4help.org/)), people in need, and volunteer organizations alike, we’re building a large-scale network of help to keep us stronger and more connected during this pandemic and beyond.
 
-## How _You_ Can Contribute
-
-We're currently looking for developers who would like to develop in React, TypeScript, JavaScript, HTML, CSS, Algolia, and/or Firebase. development. 
-This is a great team to work if you want to work with other developers or if you want to work solo.  
-We have daily sessions for collaborative coding where you can work on implementing a feature or addressing an issue together with other developers.  
-Joseph or Ethan are available to work with you on video conference to fix or implement the hacktoberfest issue or you can do it on your own.
-The best way to get ahold of them is through the Reach4Help Slack workspace or email ethanstrominger2@gmail.com.
-
-We're currently looking for help on the project in several fields, especially in React development, design and marketing. If you’d like to help, please take a look at the **[Onboarding Steps](https://github.com/reach4help/reach4help/wiki#onboading-steps)**. You can find more details on how to prepare the environment and the guidelines on how to contribute to the repo by looking at the [instructions for contributing](CONTRIBUTING.md). We'd be honored to have you join our humble abode!
-
-# Projects
+## Projects
 
 ## [Reach4Help App](web-client)
 
