@@ -216,7 +216,7 @@ const FindRequestsContainer: React.FC = () => {
       dispatch(
         setOffer(
           {
-            cavUserRef: profileState.userRef,
+            cavUserRef: profileState.userRef.path,
             pinUserRef:
               pendingRequestsWithOffersAndTimeline.data[expandedRequestId]
                 .pinUserRef,

@@ -24,12 +24,14 @@ export enum RequestStatus {
   removed = 'removed',
 }
 
-export interface IRequest extends firebase.firestore.DocumentData {
-  cavUserRef?: string | null;
+export interface IFirebaseRequest extends firebase.firestore.DocumentData {
+  cavUserRef?: firebase.firestore.DocumentReference<
+  firebase.firestore.DocumentData
+> | string | null;
   cavUserSnapshot?: IUser | null;
   pinUserRef: firebase.firestore.DocumentReference<
-    firebase.firestore.DocumentData
-  >;
+  firebase.firestore.DocumentData
+>;
   pinUserSnapshot: IUser;
   title: string;
   description: string;
@@ -44,7 +46,7 @@ export interface IRequest extends firebase.firestore.DocumentData {
   updatedAt?: firebase.firestore.Timestamp;
 }
 
-export class Request implements IRequest {
+export class FirebaseRequest implements IFirebaseRequest {
   constructor(
     pinUserRef: firebase.firestore.DocumentReference<
       firebase.firestore.DocumentData
@@ -54,7 +56,9 @@ export class Request implements IRequest {
     description: string,
     latLng: firebase.firestore.GeoPoint,
     streetAddress: string,
-    cavUserRef: string | null = null,
+    cavUserRef: firebase.firestore.DocumentReference<
+    firebase.firestore.DocumentData
+  > | string | null = null,
     cavUserSnapshot: User | null = null,
     status = RequestStatus.pending,
     createdAt = firestore.Timestamp.now(),
@@ -83,14 +87,20 @@ export class Request implements IRequest {
 
   @Allow()
   @IsOptional()
-  private _cavUserRef: string | null;
+  private _cavUserRef: firebase.firestore.DocumentReference<
+  firebase.firestore.DocumentData
+> | string | null;
 
-  get cavUserRef(): string | null {
+  get cavUserRef(): firebase.firestore.DocumentReference<
+  firebase.firestore.DocumentData
+> | string | null {
     return this._cavUserRef;
   }
 
   set cavUserRef(
-    value: string | null,
+    value: firebase.firestore.DocumentReference<
+    firebase.firestore.DocumentData
+  > | string | null,
   ) {
     this._cavUserRef = value;
   }
@@ -101,8 +111,8 @@ export class Request implements IRequest {
   >;
 
   get pinUserRef(): firebase.firestore.DocumentReference<
-    firebase.firestore.DocumentData
-  > {
+  firebase.firestore.DocumentData
+> {
     return this._pinUserRef;
   }
 
@@ -274,8 +284,8 @@ export class Request implements IRequest {
     this._cavRatedAt = value;
   }
 
-  public static factory(data: IRequest): Request {
-    return new Request(
+  public static factory(data: IFirebaseRequest): FirebaseRequest {
+    return new FirebaseRequest(
       data.pinUserRef,
       User.factory(data.pinUserSnapshot),
       data.title,
@@ -318,10 +328,10 @@ export class Request implements IRequest {
   }
 }
 
-export const RequestFirestoreConverter: firebase.firestore.FirestoreDataConverter<Request> = {
+export const IFirebaseRequestFirestoreConverter: firebase.firestore.FirestoreDataConverter<FirebaseRequest> = {
   fromFirestore: (
-    data: firebase.firestore.QueryDocumentSnapshot<IRequest>,
-  ): Request => Request.factory(data.data()),
-  toFirestore: (modelObject: Request): firebase.firestore.DocumentData =>
+    data: firebase.firestore.QueryDocumentSnapshot<IFirebaseRequest>,
+  ): FirebaseRequest => FirebaseRequest.factory(data.data()),
+  toFirestore: (modelObject: FirebaseRequest): firebase.firestore.DocumentData =>
     modelObject.toObject(),
 };

@@ -110,6 +110,7 @@ export interface RequestState {
 
 export interface IgetOpenRequests {
   userRef?: firebase.firestore.DocumentReference<User>;
+  pinUserRef: string;
   lat?: number;
   lng?: number;
   userType: ApplicationPreference;

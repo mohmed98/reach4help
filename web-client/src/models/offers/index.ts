@@ -20,12 +20,10 @@ export enum OfferStatus {
 }
 
 export interface IOffer extends firebase.firestore.DocumentData {
-  cavUserRef: firebase.firestore.DocumentReference<
-    firebase.firestore.DocumentData
-  >;
+  cavUserRef: string;
   pinUserRef: firebase.firestore.DocumentReference<
-    firebase.firestore.DocumentData
-  >;
+  firebase.firestore.DocumentData
+>;
   requestRef: firebase.firestore.DocumentReference<
     firebase.firestore.DocumentData
   >;
@@ -40,12 +38,10 @@ export interface IOffer extends firebase.firestore.DocumentData {
 
 export class Offer implements IOffer {
   constructor(
-    cavUserRef: firebase.firestore.DocumentReference<
-      firebase.firestore.DocumentData
-    >,
+    cavUserRef: string,
     pinUserRef: firebase.firestore.DocumentReference<
-      firebase.firestore.DocumentData
-    >,
+    firebase.firestore.DocumentData
+  >,
     requestRef: firebase.firestore.DocumentReference<
       firebase.firestore.DocumentData
     >,
@@ -70,13 +66,9 @@ export class Offer implements IOffer {
   }
 
   @IsObject()
-  private _cavUserRef: firebase.firestore.DocumentReference<
-    firebase.firestore.DocumentData
-  >;
+  private _cavUserRef: string;
 
-  get cavUserRef(): firebase.firestore.DocumentReference<
-    firebase.firestore.DocumentData
-  > {
+  get cavUserRef(): string {
     return this._cavUserRef;
   }
 
@@ -90,19 +82,17 @@ export class Offer implements IOffer {
 
   @IsObject()
   private _pinUserRef: firebase.firestore.DocumentReference<
-    firebase.firestore.DocumentData
-  >;
+  firebase.firestore.DocumentData
+>;
 
   get pinUserRef(): firebase.firestore.DocumentReference<
-    firebase.firestore.DocumentData
-  > {
+  firebase.firestore.DocumentData
+> {
     return this._pinUserRef;
   }
 
   set pinUserRef(
-    value: firebase.firestore.DocumentReference<
-      firebase.firestore.DocumentData
-    >,
+    value: string,
   ) {
     this._pinUserRef = value;
   }

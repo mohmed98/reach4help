@@ -11,7 +11,7 @@ export const observeOffers = (
   if (payload.userType === ApplicationPreference.cav) {
     return firestore
       .collection('offers')
-      .where('cavUserRef', '==', payload.userRef)
+      .where('cavUserRef', '==', payload.cavUserRef)
       .withConverter(OfferFirestoreConverter)
       .onSnapshot(snap => nextValue(snap));
   }
@@ -32,9 +32,9 @@ export const getRequestOffers = (
     .where('requestRef', '==', requestRef);
 
   if (payload.userType === ApplicationPreference.cav) {
-    initialQuery = initialQuery.where('cavUserRef', '==', payload.userRef);
-  } else {
-    initialQuery = initialQuery.where('pinUserRef', '==', payload.userRef);
+    initialQuery = initialQuery.where('cavUserRef', '==', payload.cavUserRef);
+  } else if (typeof payload.userRef === 'string') {
+    initialQuery = initialQuery.where('pinUserRef', '==', firestore.doc(payload.userRef));
   }
 
   return initialQuery.withConverter(OfferFirestoreConverter).get();

@@ -14,9 +14,7 @@ export interface IOfferWithLocation extends IOffer {
 
 export class OfferWithLocation extends Offer implements IOfferWithLocation {
   constructor(
-    cavUserRef: firebase.firestore.DocumentReference<
-      firebase.firestore.DocumentData
-    >,
+    cavUserRef: string,
     pinUserRef: firebase.firestore.DocumentReference<
       firebase.firestore.DocumentData
     >,

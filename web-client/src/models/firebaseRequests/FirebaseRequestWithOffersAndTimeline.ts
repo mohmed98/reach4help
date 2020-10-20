@@ -8,7 +8,7 @@ import {
   OfferWithLocation,
 } from '../offers/offersWithLocation';
 import { User } from '../users';
-import { IRequest, Request, RequestStatus } from './index';
+import { FirebaseRequest, IFirebaseRequest, RequestStatus } from './index';
 import { ITimelineItem, TimelineItem } from './timeline';
 
 export enum AbstractRequestStatus {
@@ -19,14 +19,14 @@ export enum AbstractRequestStatus {
   archived = 'archived',
 }
 
-export interface IRequestWithOffersAndTimeline extends IRequest {
+export interface IFirebaseRequestWithOffersAndTimeline extends IFirebaseRequest {
   offers: Record<string, IOfferWithLocation>;
   timeline: ITimelineItem[];
   contactNumber?: string | null;
 }
 
-export class RequestWithOffersAndTimeline extends Request
-  implements IRequestWithOffersAndTimeline {
+export class FirebaseRequestWithOffersAndTimeline extends FirebaseRequest
+  implements IFirebaseRequestWithOffersAndTimeline {
   constructor(
     pinUserRef: firebase.firestore.DocumentReference<
       firebase.firestore.DocumentData
@@ -36,7 +36,9 @@ export class RequestWithOffersAndTimeline extends Request
     description: string,
     latLng: firebase.firestore.GeoPoint,
     streetAddress: string,
-    cavUserRef: string | null = null,
+    cavUserRef: firebase.firestore.DocumentReference<
+    firebase.firestore.DocumentData
+  > |string | null = null,
     cavUserSnapshot: User | null = null,
     status = RequestStatus.pending,
     createdAt = firestore.Timestamp.now(),
@@ -112,14 +114,14 @@ export class RequestWithOffersAndTimeline extends Request
     this._timeline.push(timelineItem);
   }
 
-  public getRequest(): Request {
-    return Request.factory(this.toObject() as IRequest);
+  public getRequest(): FirebaseRequest {
+    return FirebaseRequest.factory(this.toObject() as IFirebaseRequest);
   }
 
   public static factory(
-    data: IRequestWithOffersAndTimeline,
-  ): RequestWithOffersAndTimeline {
-    return new RequestWithOffersAndTimeline(
+    data: IFirebaseRequestWithOffersAndTimeline,
+  ): FirebaseRequestWithOffersAndTimeline {
+    return new FirebaseRequestWithOffersAndTimeline(
       db.doc(data.pinUserRef as any),
       User.factory(data.pinUserSnapshot),
       data.title,
@@ -129,7 +131,7 @@ export class RequestWithOffersAndTimeline extends Request
         (data.latLng as any)._longitude,
       ),
       data.streetAddress,
-      data.cavUserRef ? (data.cavUserRef as any) : null,
+      data.cavUserRef ? data.cavUserRef : null,
       // This field may be null
       data.cavUserSnapshot ? User.factory(data.cavUserSnapshot) : null,
       data.status,
@@ -256,14 +258,14 @@ export class RequestWithOffersAndTimeline extends Request
   }
 }
 
-export const RequestWithOffersFirestoreConverter: firebase.firestore.FirestoreDataConverter<RequestWithOffersAndTimeline> = {
+export const FirebaseRequestWithOffersFirestoreConverter: firebase.firestore.FirestoreDataConverter<FirebaseRequestWithOffersAndTimeline> = {
   fromFirestore: (
     data: firebase.firestore.QueryDocumentSnapshot<
-      IRequestWithOffersAndTimeline
+      IFirebaseRequestWithOffersAndTimeline
     >,
-  ): RequestWithOffersAndTimeline =>
-    RequestWithOffersAndTimeline.factory(data.data()),
+  ): FirebaseRequestWithOffersAndTimeline =>
+    FirebaseRequestWithOffersAndTimeline.factory(data.data()),
   toFirestore: (
-    modelObject: RequestWithOffersAndTimeline,
+    modelObject: FirebaseRequestWithOffersAndTimeline,
   ): firebase.firestore.DocumentData => modelObject.toObject(),
 };

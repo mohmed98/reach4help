@@ -42,11 +42,13 @@ export interface OffersState {
 
 export interface IgetOffers {
   userRef?: firebase.firestore.DocumentReference<User>;
+  cavUserRef?: string;
   userType: ApplicationPreference;
 }
 
 export interface IgetRequestOffers {
   userRef?: firebase.firestore.DocumentReference<User>;
+  cavUserRef?: string;
   userType: ApplicationPreference;
   requestId: string;
 }

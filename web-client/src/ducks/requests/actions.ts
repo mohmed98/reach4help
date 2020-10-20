@@ -70,6 +70,7 @@ export const getArchivedRequests = (payload: IgetOpenRequests) => (
     payload,
   });
 
+  // TODO: Could we delete this?
 export const observeOpenRequests = (
   dispatch: Function,
   payload: IgetOpenRequests,

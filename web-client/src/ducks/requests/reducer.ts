@@ -103,7 +103,8 @@ export default createReducer<RequestState>(
       state.syncOpenRequestsState.loading = false;
       state.syncOpenRequestsState.error = undefined;
       const mappedData = Object.keys(payload.data.data).reduce(
-        (acc: Record<string, RequestWithOffersAndTimeline>, key: string) => ({
+        (acc: Record<string, RequestWithOffersAndTimeline>, key: string) =>
+        ({
           ...acc,
           [key]: RequestWithOffersAndTimeline.factory(payload.data.data[key]),
         }),
