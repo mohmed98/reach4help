@@ -9,23 +9,38 @@ const DetailsDisplayWrapper = styled.div`
 `;
 
 export const DetailsDisplay = ({ details }) => {
-  const { Paragraph, Title } = Typography;
+  const { Paragraph } = Typography;
   return (
     <DetailsDisplayWrapper>
-      <Title level={3}> {details.title} </Title>
-      <Paragraph> {details.body} </Paragraph>
+      <SectionLabel> {details.title} </SectionLabel>
+      <Paragraph> {details.description} </Paragraph>
     </DetailsDisplayWrapper>
   );
 };
 
-export const AddressDisplay = ({ location }) => {
+const SectionLabel = styled.h1`
+  font: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+`;
+
+const Address = styled.address`
+  margin-left: 5px;
+  line-height: 22px;
+  font: Roboto, sans-serif;
+  font-size: 14px;
+`;
+
+export const AddressDisplay = ({ location, prefix }) => {
   const { t } = useTranslation();
-  const { Title } = Typography;
 
   return (
     <AddressDisplayWrapper>
-      <Title level={3}>{t('modules.create.displayElements.address')} </Title>
-      <address>
+      <SectionLabel role="heading">
+        {prefix} {t('modules.create.stepTitles.map')}{' '}
+      </SectionLabel>
+      <Address>
         {location.address1}
         <br />
         {location.address2}
@@ -34,7 +49,7 @@ export const AddressDisplay = ({ location }) => {
         {location.country}
         <br />
         {location.postalCode}
-      </address>
+      </Address>
     </AddressDisplayWrapper>
   );
 };
@@ -43,25 +58,15 @@ const AddressDisplayWrapper = styled.div`
   margin: 20px 0;
 `;
 
-export const ButtonsDisplay = ({ children }) => (
-  <ButtonsDisplayDiv>{children}</ButtonsDisplayDiv>
-);
-
 export const ButtonsContainer = styled.div`
-  width: 80%;
-  margin: 0 auto;
+  position: fixed;
+  bottom: 30px;
+  display: flex;
 `;
+
 export const DisplayButton = styled(Button)`
   flex: 1 1 1;
   margin: '5 0';
-`;
-
-const ButtonsDisplayDiv = styled.div`
-  position: absolute;
-  top: 90%;
-
-  display: flex;
-  width: 80%;
 `;
 
 const mapHeight = '250px';
@@ -75,7 +80,7 @@ export const MapDisplay = ({ coords }) => (
     {coords && (
       <WebClientMap
         destinations={[]}
-        zoom={12}
+        zoom={17}
         height={mapHeight}
         origin={{ lat: coords.latitude, lng: coords.longitude }}
         canRelocate={false}

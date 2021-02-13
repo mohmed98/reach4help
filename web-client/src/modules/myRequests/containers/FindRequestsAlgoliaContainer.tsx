@@ -8,8 +8,11 @@ import {
   GoogleMapsLoader,
   Marker,
 } from 'react-instantsearch-dom-maps';
+import { useDispatch, useSelector } from 'react-redux';
 import LoadingWrapper from 'src/components/LoadingComponent/LoadingComponent';
+import { ProfileState } from 'src/ducks/profile/types';
 import { useSearchKey } from 'src/ducks/search/operations';
+import { observeCreateXSpecificOfferFromRequest } from 'src/ducks/xSpecificOffers/actions';
 
 // const Debug = connectHits(({ hits }) => (
 //   <ul>
@@ -20,32 +23,15 @@ import { useSearchKey } from 'src/ducks/search/operations';
 // ));
 
 const PostInfoDisplay = ({ post }) => {
+  const dispatch = useDispatch();
+  const profileState = useSelector(
+    ({ profile }: { profile: ProfileState }) => profile,
+  );
+  const [currentPost] = useState(post);
   const { userSnapshot, description, title } = post;
   const { displayName, displayPicture } = userSnapshot;
-  const onClickHandler = () => {
-    alert('this should create a specific offer');
-  };
-  //     dispatch(
-  //       setOffer(
-  //         {
-  //           cavUserRef: profileState.userRef,
-  //           pinUserRef:
-  //             pendingRequests.data[expandedRequestId]
-  //               .pinUserRef,
-  //           requestRef: firestore.collection('requests').doc(expandedRequestId),
-  //           cavUserSnapshot: profileState.profile,
-  //           requestSnapshot: pendingRequests.data[
-  //             expandedRequestId
-  //           ].getRequest(),
-  //           message: t(
-  //             'modules.requests.containers.FindRequestsContainer.want_to_help',
-  //           ),
-  //           status: action ? OfferStatus.pending : OfferStatus.cavDeclined,
-  //         },
-  //         undefined,
-  //         phoneNumber,
-  //       ),
-  //     );
+  const onClickHandler = () =>
+    dispatch(observeCreateXSpecificOfferFromRequest(currentPost, profileState));
 
   return (
     <div>
